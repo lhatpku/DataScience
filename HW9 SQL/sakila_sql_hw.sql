@@ -74,7 +74,6 @@ WHERE UPPER(First_name) = 'HARPO' AND UPPER(last_name) = 'WILLIAMS';
 -- 5a. Re-create the address table
 
 SHOW CREATE TABLE address;
-DESCRIBE address;
 
 -- 6a. Use JOIN to display the first and last names, as well as the address, of each staff member. Use the tables staff and address.
 
