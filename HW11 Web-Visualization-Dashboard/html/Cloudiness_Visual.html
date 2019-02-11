@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+
+	<style>
+	
+	.navbar-brand
+		{
+		font-family: 'Lato', sans-serif;
+		color:grey;
+		font-size: 35px;
+		margin: 0px;
+		}
+	
+	.image-select
+	{
+		  border: 2px solid #41A2FF;
+		  margin: 2px;
+		  padding:2px;
+	}
+	.image-normal
+	{
+		  border: 2px solid white;
+		  margin: 2px;
+		  padding:2px;
+	}
+
+	</style>
+	<title>Cloudiness</title>
+	
+</head>	  
+<body>
+	<!-- NAVBAR WITH DROPDOWN -->
+	<nav class="navbar navbar-expand-sm navbar-light bg-light mb-4 py-4">
+		<div class="container-fluid">
+			<a class="navbar-brand bg-info text-light" href="../landing.html"><strong>Latitude</strong></a>
+
+			<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item dropdown active">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+							Plots
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a href="./Temperature_Visual.html" class="dropdown-item">Latitude vs. Max Temperature</a>
+							<a href="./Humidity_Visual.html" class="dropdown-item">Latitude vs. vs Humidity</a>
+							<a href="./Cloudiness_Visual.html" class="dropdown-item active">Latitude vs. vs Cloudiness</a>
+							<a href="./WindSpeed_Visual.html" class="dropdown-item">Latitude vs. vs Wind Speed</a>
+						</div>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="./Comparison.html">Comparison</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" href="./Data.html">Data</a>
+					</li>	
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Contents -->
+	<div class="container-fluid bg-light">
+		<div class="row">
+			<!-- Chart and Analysis -->
+			<div class="col-sm-12 col-md-8 mb-4 bg-muted">
+				<div class="panel">
+					<div class="panel-header">
+						<h1 class="title text-info py-4">Latitude vs. Cloudiness</h1>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<img src="../Resources/assets/images/Fig3.png" alt="Latitude vs. Cloudiness" height="350" width="550" align="left">
+						<p class="lead"> Latitude is the measurement of the distance of a location on the Earth from the equator. 
+								From City Latitude vs Cloudiness chart, we can find some weak correlation between cloudiness and latitude.		
+						</p>
+						<p class="lead">
+								Cities located near the equator (-10 to 10 latitude) appears to have relatively lower cloudiness, 
+								while cities located farther away from equator (-10 to -40 and 10 to 40) appears to have relatively higher cloudiness. 
+								The results relate to the analysis of the temperature, locations with temperate too high or too cold are difficult to form big cloud. 
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- Display total four charts -->
+			<div class="col-sm-12 col-md-4 mb-4 bg-muted">
+				<div class="panel">
+					<div class="panel-header">
+						<h1 class="title text-info py-4">Visualizations</h1>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<a href="./Temperature_Visual.html"><img src="../Resources/assets/images/Fig1.png" alt="Latitude vs. Max Temperature" height="180" width="180"></a>
+						<a href="./Humidity_Visual.html"><img src="../Resources/assets/images/Fig2.png" alt="Latitude vs. Humidity" height="180" width="180"></a>
+						<a href="./Cloudiness_Visual.html"><img src="../Resources/assets/images/Fig3.png" alt="Latitude vs. Cloudiness" height="180" width="180"></a>
+						<a href="./WindSpeed_Visual.html"><img src="../Resources/assets/images/Fig4.png" alt="Latitude vs. Wind Speed" height="180" width="180"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Other Reference -->
+	<div style="margin-top:500px;"></div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+
+</body>
+	
+</html>
