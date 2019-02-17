@@ -1,9 +1,13 @@
 #################################################
 # Dependencies
 #################################################
-from flask import Flask, render_template
+import time
+from splinter import Browser
+from bs4 import BeautifulSoup as bs
 from pymongo import MongoClient
-
+from datetime import date
+from flask import Flask, render_template, redirect
+# from mars_scrape import mars_scrape
 #################################################
 # Flask Setup
 #################################################
@@ -15,6 +19,14 @@ app = Flask(__name__)
 client = MongoClient("mongodb://localhost:27017")
 db = client.mission_to_mars
 
+##################################
+# Initial Chrome
+##################################
+def init_browser():
+    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    browser = Browser('chrome', **executable_path, headless=False)
+    return browser
+
 #################################################
 # Flask Routes
 #################################################
@@ -22,42 +34,36 @@ db = client.mission_to_mars
 def index():
     #use mars_info collection from mission_to_marsDB
     #query information from the collection and save to new_info
-    new_info = db.mars_info.find_one()
 
     #if no database and collection yet (first-time), call scrape function and use
     #the scrape information to output object.
-    if(new_info == None):
-        output = scrape_mars.scrape()
-        db.mars_info.insert_one(output)
-        new_info = db.mars_info.find_one()
+    # if (new_info == None):
+    #     db.mars_info.insert_one(output)
+    new_info_cursor = db.mars_data.find().sort([('date', -1)]).limit(1)
 
-    for k, v in new_info.items(): 
-        if k == "news":
-            news = v
-        elif k == "weather":                
-            weather = v
-        elif k == "featured_image_url":
-            featured_image_url = v
-        elif k == "facts":
-            facts = v
-        elif k == "hemisphere_image_urls": 
-            hemisphere_image_urls = v
-    return render_template('index.html',news=news,weather=weather,featured_image_url=featured_image_url,facts=facts,hemisphere_image_urls=hemisphere_image_urls)
+    for new_info in new_info_cursor: 
+
+        news = new_info['news']
+        feature_image = new_info['feature_image']
+        weather = new_info['weather']
+        facts = new_info['facts']
+        hemispheres_image = new_info['hemispheres_image']
+        
+    return render_template('index.html', news = news, weather = weather, featured_image = feature_image, facts = facts, hemispheres_image = hemispheres_image)
 
         
 # Route when the scrape button is click by user in the index.html
 # Calls the scrape methods
-# Remove the old mars_info collection in the mission_to_mars DB
-# Insert th latest scrape information into the collection
-# Render it into a dynamic html page      
-# 
-#   
-# @app.route("/scrape")
-# def scrape_new():
-#     output = scrape_mars.scrape()
-#     db.mars_info.remove({})
-#     db.mars_info.insert_one(output)
-#     return render_template('success.html')
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+# @app.route("/scrape")
+# def scrape_new_data():
+    
+#     browser = init_browser()
+#     scrape_results = mars_scrape(browser)
+
+#     db.mars_data.remove({})
+#     db.mars_data.insert_one(scrape_results)
+#     return redirect("/", code=302)
+
+if __name__ == "__main__":
+    app.run(debug=True)
