@@ -12,36 +12,22 @@
 </head>	  
 <body id="home" data-spy="scroll" data-target="#main-nav">
 
-    <nav class="navbar navbar-expand-md navbar-light py-4" id="main-nav">
-        <div class="container">
-            <a href="#home" class="navbar-brand">
-                <h3 class="d-inline align-middle title display-4 text-secondary"><strong>Mission to Mars</strong></h3>
-            </a>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item rounded shadow">
-                    <!-- Refresh later add -->
-                    <a href="/scrape" class="nav-link bg-primary text-light">Scrape New Data</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <hr style="width: 100%; height: 3px;" class="bg-light" >
+    <div class="jumbotron text-center" style="background-image: url(https://cdn.theatlantic.com/static/mt/assets/science/0831Pic.jpg); background-size: 100%; height: 100%;">
+        <h1 class="display-3 text-secondary py-3"><strong>Mission to Mars</strong></h1>
+        <a class="btn btn-lg rounded shadow text-light mt-2" style="background-color:#c1440e;" href="/scrape" role="button">Scrape New Data</a>
+    </div>
+
     <!-- SHOWCASE -->
     <section id="showcase" class="py-2">
         <div class="primary-overlay text-secondary">
             <div class="container">
                 <div class="row">
 
-                    <div class="col-md-8 col-sm-12 px-4 pt-3">
+                    <div class="col-md-7 col-sm-12 px-4 pt-3">
                         <img src={{featured_image}} class="img-fluid d-none d-lg-block">
                     </div>
 
-                    <div class="col-md-4 col-sm-12 py-3 px-4">
+                    <div class="col-md-5 col-sm-12 py-3 px-4">
                         <div class="card text-center bg-info text-light mb-2">
                             <div class="card-body py-2 pt-3">
                                 <h3>Mars Facts</h3>

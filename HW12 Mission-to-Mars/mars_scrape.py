@@ -12,14 +12,6 @@ client = MongoClient("mongodb://localhost:27017")
 db = client.mission_to_mars
 
 ##################################
-# Initial Chrome
-##################################
-def init_browser():
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
-    return browser
-
-##################################
 # Scrape News Function
 ##################################
 def get_mars_news(URL,browser):
@@ -82,7 +74,7 @@ def get_mars_image(URL,browser):
             print(f"Try the {count}-th time of Scrape Image")
         
         if image_select == 1:     
-            break       
+            break  
 
 ##################################
 # Scrape Weather Function
@@ -203,14 +195,19 @@ def mars_scrape(browser):
     scrape_results['facts'] = get_mars_facts(Mars_Facts_URL,browser)
     scrape_results['hemispheres_image'] = get_mars_hemispheres(Mars_Hemispheres_URL,browser)
 
+    browser.quit()
+
     return scrape_results
 
 ##################################
 # Load Data to Mongo
 ##################################
-browser = init_browser()
+executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+browser = Browser('chrome', **executable_path, headless=False)
 
 scrape_results = mars_scrape(browser)
+
+browser.quit()
 
 db.mars_data.insert_one(scrape_results)
 

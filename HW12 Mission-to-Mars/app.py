@@ -7,7 +7,6 @@ from bs4 import BeautifulSoup as bs
 from pymongo import MongoClient
 from datetime import date
 from flask import Flask, render_template, redirect
-# from mars_scrape import mars_scrape
 #################################################
 # Flask Setup
 #################################################
@@ -18,14 +17,6 @@ app = Flask(__name__)
 #################################################
 client = MongoClient("mongodb://localhost:27017")
 db = client.mission_to_mars
-
-##################################
-# Initial Chrome
-##################################
-def init_browser():
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
-    browser = Browser('chrome', **executable_path, headless=False)
-    return browser
 
 #################################################
 # Flask Routes
@@ -55,15 +46,22 @@ def index():
 # Route when the scrape button is click by user in the index.html
 # Calls the scrape methods
 
-# @app.route("/scrape")
-# def scrape_new_data():
+@app.route("/scrape")
+def scrape_new_data():
     
-#     browser = init_browser()
-#     scrape_results = mars_scrape(browser)
+    from mars_scrape import mars_scrape
 
-#     db.mars_data.remove({})
-#     db.mars_data.insert_one(scrape_results)
-#     return redirect("/", code=302)
+    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    browser = Browser('chrome', **executable_path, headless=False)
+
+    scrape_results = mars_scrape(browser)
+
+    db.mars_data.remove({})
+    db.mars_data.update({}, scrape_results, upsert=True)
+
+    browser.quit()
+
+    return redirect("/", code=302)
 
 if __name__ == "__main__":
     app.run(debug=True)
