@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <title>UFO Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css"> -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="static/css/style.css"> -->
+  <link rel="icon" href="images/ufo.svg">
+  <link rel="stylesheet" href="dist/css/bootstrap-multiselect.css" type="text/css">
+
+</head>
+
+<body>
+
+    <ul class="nav nav-pills mb-3 fixed-top bg-white">
+        <li class="nav-item">
+          <a class="nav-link active py-3" id="find-by-date" data-toggle="pill" href="#search-date" role="tab" aria-controls="pills-job" aria-selected="true">Find by Date</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link py-3" id="find-by-location" data-toggle="pill" href="#search-location" role="tab" aria-controls="pills-candidate" aria-selected="false">Find by Location</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link py-3" id="find-by-shape" data-toggle="pill" href="#search-shape" role="tab" aria-controls="pills-candidate" aria-selected="false">Find by Shape</a>
+        </li>
+    </ul>
+
+
+    <div class="jumbotron text-center" id = "background" style="background-image: url(images/nasa.jpg); background-size: 100%; height: 100%;">
+
+      <h1 class="display-3 text-primary py-5"><strong>UFO Sightings</strong></h1>
+      <p class="text-light py-3" style="font-size:1.5rem"> The Truth is Out There</p>  
+
+      <div class="tab-content p-4 rounded text-left text-info">
+
+        <div class="tab-pane fade show active" id="search-date" role="tabpanel" aria-labelledby="pills-candidate-tab">
+          <div class="card text-center bg-secondary text-light mb-2" style="width: 28rem;">
+            <div class="card-body py-2 pt-3">
+              <form action="#" method="post">
+                <div class="col-auto form-group row">
+                  <label for="usr">Date:</label>
+                  <input type="text" class="form-control form-control-block search-input" id="datetime"  type="text" placeholder="mm/dd/yyyy">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  
+        <div class="tab-pane fade" id="search-shape" role="tabpanel" aria-labelledby="pills-job-tab">
+          <div class="card text-center bg-secondary text-light mb-2" style="width: 28rem;">
+            <div class="card-body py-2 pt-3">
+              <form action="#" method="post">
+                <div class="col-auto form-group row">
+                  <label for="usr" class="text-left d-inline-block my-2">Shape:</label>
+                  <select id="shape" class="form-control d-inline-block" placeholder="shape">
+                      <option value="">all</option>
+                      <option value="circle">circle</option>
+                      <option value="light">light</option>
+                      <option value="triangle">triangle</option>
+                      <option value="unknown">unknown</option>
+                      <option value="fireball">fireball</option>
+                      <option value="formation">formation</option>
+                      <option value="other">other</option>
+                      <option value="sphere">sphere</option>
+                      <option value="disk">disk</option>
+                      <option value="chevron">chevron</option>
+                      <option value="rectangle">rectangle</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+  
+        <div class="tab-pane fade" id="search-location" role="tabpanel" aria-labelledby="pills-candidate-tab">
+          <div class="card text-center bg-secondary text-light mb-2" style="width: 28rem;">
+            <div class="card-body py-2 pt-3">
+              <form action="#" method="post">
+                <div class="col-auto form-group row">
+                  <label for="usr" class="text-left my-2">Country</label>
+                  <input type="text" class="form-control form-control-block search-input" id="country" type="text" placeholder="e.g., us">
+                </div>
+                <div class="col-auto form-group row">
+                  <label for="usr" class="text-left my-2">State:</label>
+                  <input type="text" class="form-control form-control-block search-input" id="state" type="text" placeholder="e.g., ca">
+                </div>
+                <div class="col-auto form-group row">
+                    <label for="usr" class="text-left my-2">City:</label>
+                    <input type="text" class="form-control form-control-block search-input" id="city" type="text" placeholder="e.g., bonita">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 text-center ml-4">
+        <input id="filter-btn" type="submit" value="Search" class="btn btn-outline-light btn-block centered">
+      </div>
+
+      <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+      <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+
+    </div>
+
+    <!-- The  -->
+    
+    <div class="container">
+      
+      <div class="row margin-top-50">
+
+        <div class="col-12">
+          <div id="table-area" class="">
+            <table id="ufo-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="table-head">Date</th>
+                  <th class="table-head">City</th>
+                  <th class="table-head">State</th>
+                  <th class="table-head">Country</th>
+                  <th class="table-head">Shape</th>
+                  <th class="table-head">Duration</th>
+                  <th class="table-head">Comments</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+     
+      </div>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+  crossorigin="anonymous"></script>
+
+<!-- Multi Select JS -->
+<script type="text/javascript" src="dist/js/bootstrap-multiselect.js"></script>
+
+<!-- d3 and other JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="static/js/data.js"></script>
+<script src="static/js/app.js"></script>
+
+</body>
+
+</html>
